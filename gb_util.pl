@@ -92,7 +92,7 @@ sub seq_disas {
     # if either that results uses no concatenation or if it uses less concatenation
     # than any other result.
     my $candidate_solution;
-    
+
 
     # Case 1: we only have a single move
     if (scalar $mlen == 1) {
@@ -139,7 +139,7 @@ sub seq_disas {
 		# Minimize concat
 		my $total_concat = $xconcat + $yconcat;
 		if ($total_concat == 0) {
-		    
+
 		    # Great, we got a commutator, return it
 		    return [(1, $this_std, $total_concat, '[' . $xfrm . ',' . $yfrm . ']', '[' . $xstr . ',' . $ystr . ']')];
 		}
@@ -224,7 +224,7 @@ sub seq_disas {
 
     # Case 4: check for []xN (if allowed)
     if (($disas_allow_xn == 1) && ($mlen >= 2)) {
-       
+
 	for (my $i = 1; $i < $mlen; $i++) {
 
 	    if ($mlen % $i == 0) {
@@ -249,7 +249,7 @@ sub seq_disas {
 			#my $total_concat = $xconcat * $n;  # I can't decide if * $n is better or not
 			my $total_concat = $xconcat;
 			if ($total_concat == 0) {
-			    
+
 			    # Great, we []xN, return it
 			    return [(1, 0, $total_concat, $xfrm . 'x' . $n, $xstr . 'x' . $n)];
 			}
@@ -287,7 +287,7 @@ sub seq_disas {
 
 		# Minimize concat
 		my $total_concat = $xconcat + $yconcat + 1;
-			    
+
 		if ((not defined $candidate_solution) ||
 		    ($total_concat < $candidate_solution->[2])) {
 		    $candidate_solution = [(1, 0, ($xconcat + $yconcat + 1), '[' . $xfrm . ' ' . $yfrm . ']', '[' . $xstr . ' ' . $ystr . ']')];
@@ -428,7 +428,7 @@ sub norm_name {
 
     if ($move =~ m/([A-Z]+)(\'?)(\d*)((?:&\d+)?)/i) {
 	($name, $dir, $amt, $slice) = ($1, $2, $3, $4);
-	
+
 	my $clean_name = join('', (sort split(//, lc($name))));
 
 	return $clean_name . $dir . $amt . $slice;
@@ -730,7 +730,7 @@ if (defined $cgi_var->param('input')) {
 	$output_format = 'kvtd';
     }
 
-    
+
     # disassembly options
     if ((defined  $cgi_var->param('assume_edge_inv')) &&
 	($cgi_var->param('assume_edge_inv') eq 'on')) {
@@ -800,7 +800,7 @@ if (defined $cgi_var->param('input')) {
 
     if ($input_format eq 'in_dodeca') {
 	print '<hr>', "\n";
-    
+
 	if ($output_format eq 'gb') {
 	    print '<p><b>Gelatinbrain\'s dodecahedron notation:</b></p>', "\n";
 	    print '<p><img src="http://www.brandonenright.net/twistypuzzles/other/gb_notation.png"></p>', "\n";
@@ -821,7 +821,7 @@ if (defined $cgi_var->param('input')) {
 	    join($join_char, map {format_output($output_format, $_)} @moves) .
 	    $end_bracket .
 	    $trailing_char;
-	
+
 	print '<p><b>All cube rotations:</b></p>', "\n";
 	print '<p>', $cgi_var->textarea('all_cube_r',
 					all_cube_rotations($orig),
